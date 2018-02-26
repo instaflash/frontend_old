@@ -1,0 +1,4 @@
+[core]
+	autocrlf = true
+	savecrlf = true
+	editor = vim

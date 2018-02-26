@@ -1,0 +1,49 @@
+# distribution directory
+dist/*
+!dist/.gitkeep
+
+# error log files
+npm-error.log*
+yarn-error.log*
+
+# debug log files
+npm-debug.log*
+yarn-debug.log*
+
+# dependencies
+node_modules/
+bower_components/
+vendor/
+
+# nano, vim/vi & swap files
+nano.save
+*.swp
+**/*.swp
+
+# lock files
+package-lock.json
+yarn.lock
+
+# webstorm project files
+.idea
+
+# netbeans project files
+nbproject
+
+# zend studio for eclipse project files
+.buildpath
+.project
+.settings
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# windows thumbnail cache
+Thumbs.db
+
+# Mac DS_Store Files
+.DS_Store
