@@ -135,7 +135,7 @@ config = {
                 }
 			},
             {
-                test: /\.jpe?g|png|gif$/,
+                test: /\.(jpe?g|png|gif)$/,
                 use: {
                     loader: 'file-loader',
                     options: {
@@ -147,7 +147,7 @@ config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: packageFile.name,
+            title: 'InstaFlash',
             filename: 'index.html', // Output path: ./dist/index.html
             template: './src/index.htm',
 			inject: 'body', // Inject script file to body tag
@@ -181,9 +181,8 @@ config = {
             Popper: 'popper.js'
         }),
 		new webpack.HotModuleReplacementPlugin(),
-		/*
         new FaviconsWebpackPlugin({
-            logo: './src/logo.svg',
+            logo: './src/logo/logo.svg',
             prefix: 'img/favicons/icons-[hash]', // Output directory
             persistentCache: false,
             inject: true,
@@ -199,8 +198,7 @@ config = {
                 yandex: false,
                 windows: false
             }
-		})
-		*/
+		}),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.ContextReplacementPlugin(
 			/@angular(\\|\/)core(\\|\/)/,

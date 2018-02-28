@@ -20,8 +20,8 @@
     "npm": "^5.6.0"
   },
   "config": {
-    "charset": "windows-1252",
-    "language": "en",
+    "charset": "utf-8",
+    "language": "ru",
     "host": "localhost",
     "port": 8080
   },

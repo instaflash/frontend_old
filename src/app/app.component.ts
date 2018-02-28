@@ -1,11 +1,10 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 @Component({
-	selector: '#app-root',
+	selector: 'app-root',
 	templateUrl: require('./app.component.html'),
-	styleUrls: [require('./app.component.sass')],
+	styleUrls: [require('./app.component.sass')]
 })
 export class AppComponent {
-	private ngOnInit() {
-		console.log('Initialized');
-	}
+
 }

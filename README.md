@@ -47,5 +47,5 @@ yarn run karma start
 ---
 ### TypeScript lint
 ```
-yarn run tslint -p ./src
+yarn run tslint -p ./
 ```

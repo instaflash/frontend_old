@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="ru" datatype="plaintext" original="ng2.template">
+        <body>
+            <trans-unit id="logo_name" datatype="plaintext">
+                <target>InstaFlash</target>
+            </trans-unit>
+            <trans-unit id="navref1" datatype="plaintext">
+                <target>Возможности</target>
+            </trans-unit>
+            <trans-unit id="navref2" datatype="plaintext">
+                <target>Инструкция</target>
+            </trans-unit>
+            <trans-unit id="navref3" datatype="plaintext">
+                <target>Правила</target>
+            </trans-unit>
+            <trans-unit id="navref4" datatype="plaintext">
+                <target>Попробовать</target>
+            </trans-unit>
+            <trans-unit id="navref5" datatype="plaintext">
+                <target>Войти</target>
+            </trans-unit>
+            <trans-unit id="header_title" datatype="plaintext">
+                <target>Клиенты за один клик</target>
+            </trans-unit>
+            <trans-unit id="header_text" datatype="plaintext">
+                <target>InstaFlash - это сервис по продвижению в инстаграме, который умеет автоматически лайкать, комментировать, подписаться и отписаться по хэштегам и геометкам. Собирайте до 5000 постоянных клиентов.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
