@@ -1,18 +1,25 @@
+// Components
 import { Component } from '@angular/core';
-
+// Services
+import { LocaleService } from '../locale.service';
+// Interfaces
 interface Logo {
-	ref: string;
+	ref: string; // reference
 	size: number; // px
 }
 
 @Component({
 	selector: 'navbar-component',
-	templateUrl: require('./navbar.component.html'),
-	styleUrls: [require('./navbar.component.sass')]
+	templateUrl: './navbar.component.html',
+	styleUrls: ['./navbar.component.sass']
 })
-export class NavarComponent {
+export class NavbarComponent {
 	private logo: Logo = {
 		ref: require('../../logo/logo.png'),
 		size: 50 // px
 	};
+	dict: any;
+	constructor(private localeService: LocaleService) {
+		this.dict = this.localeService.getDict();
+	}
 }

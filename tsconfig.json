@@ -3,16 +3,35 @@
   "buildOnSave": false,
   "compilerOptions": {
     "sourceMap": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
+    "strict": true,
+    "noEmitOnError": true,
     "target": "es5",
     "removeComments": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "module": "commonjs",
-    "lib": ["es2015", "dom"]
+    "moduleResolution": "node",
+    "lib": ["es2015", "dom"],
+    "typeRoots": [
+      "./typings/",
+      "./node_modules/@types/"
+    ]
   },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,
+    "preserveWhitespaces": false,
+    "strictMetadataEmit" : true
+  },
+  "include": [
+    "./src/*.ts",
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules/"
+  ],
   "plugins": [
-    {"name": "@angular/language-service"}
+    {
+      "name": "@angular/language-service"
+    }
   ]
 }

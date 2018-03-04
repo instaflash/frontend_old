@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-root',
-	templateUrl: require('./app.component.html'),
-	styleUrls: [require('./app.component.sass')]
+	selector: '#app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
-
-}
+export class AppComponent { }

@@ -1,36 +1,36 @@
-# distribution directory
+# Distribution directory
 dist/*
 !dist/.gitkeep
 
-# error log files
+# Error log files
 npm-error.log*
 yarn-error.log*
 
-# debug log files
+# Debug log files
 npm-debug.log*
 yarn-debug.log*
 
-# dependencies
+# Dependencies
 node_modules/
 bower_components/
 vendor/
 
-# nano, vim/vi & swap files
+# Nano, vim/vi & swap files
 nano.save
 *.swp
 **/*.swp
 
-# lock files
+# Lock files
 package-lock.json
 yarn.lock
 
-# webstorm project files
+# Webstorm project files
 .idea
 
-# netbeans project files
+# Netbeans project files
 nbproject
 
-# zend studio for eclipse project files
+# Zend studio for eclipse project files
 .buildpath
 .project
 .settings
@@ -42,8 +42,8 @@ nbproject
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# windows thumbnail cache
+# Windows thumbnail cache
 Thumbs.db
 
-# Mac DS_Store Files
+# Mac DS_Store files
 .DS_Store

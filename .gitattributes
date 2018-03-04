@@ -1,8 +1,8 @@
-*           text=auto
+*			text=auto
 *.txt		text
-*.sh        text eol=lf
-*.jpg       -text
-*.png       -text
-*.gif       -text
-*.svg       -text
-*.pdf       -text
+*.sh		text eol=lf
+*.jpg		-text
+*.png		-text
+*.gif		-text
+*.svg		-text
+*.pdf		-text

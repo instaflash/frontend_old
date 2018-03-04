@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="/">
             <img [src]="logo.ref" [width]="logo.size" alt="">
-            <span i18n="@@logo_name">text</span>
+            <span>{{dict.company_name}}</span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -10,21 +10,21 @@
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#" i18n="@@navref1">text</a>
+                    <a class="nav-link" href="#">{{dict.navbar_item_1}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" i18n="@@navref2">text</a>
+                    <a class="nav-link" href="#">{{dict.navbar_item_2}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" i18n="@@navref3">text</a>
+                    <a class="nav-link" href="#">{{dict.navbar_item_3}}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" i18n="@@navref4">text</a>
+                    <a class="nav-link" href="#">{{dict.navbar_item_4}}</a>
                 </li>
             </ul>
             <a href="#" class="btn btn-info login">
                 <i class="fa fa-sign-in"></i>
-                <span i18n="@@navref5">text</span>
+                <span>{{dict.navbar_item_5}}</span>
             </a>
         </div>
     </div>

@@ -14,14 +14,17 @@ UglifyJsPlugin = require('uglifyjs-webpack-plugin'),
 FaviconsWebpackPlugin = require('favicons-webpack-plugin'),
 NODE_ENV = process.env.NODE_ENV,
 isProd = NODE_ENV === 'production', // !isProd = development
+HOSTNAME = 'localhost',
+PORT = 8080,
 config = {
     entry: {
+		vendors: ['jquery', 'popper.js', 'bootstrap'],
 		app: './src/main.ts'
 	},
     output: {
 		path: path.resolve(__dirname, 'dist'),
-        filename: '[name].[hash].js',
-        sourceMapFilename: '[name].[hash].js.map'
+		filename: '[name].[hash].js',
+		sourceMapFilename: '[name].[hash].js.map'
 	},
 	resolve: {
 		extensions: ['.ts', '.js']
@@ -31,24 +34,36 @@ config = {
         aggregateTimeout: 100, // default: 300
         ignored: /node_modules/
     },
-    devtool: (!isProd ? 'source-map' : false),
+    devtool: (!isProd ? 'cheap-module-eval-source-map' : false),
     module: {
         rules: [
             {
                 test: /\.ts$/,
-                exclude: /(node_modules|bower_components)/,
-                use: ['awesome-typescript-loader']
-            },
-            {
+                exclude: /(node_modules|dist)/,
+                use: [
+					'awesome-typescript-loader',
+					'angular2-template-loader'
+				]
+			},
+			{
+				test: /\.component\.sass$/,
+				exclude: /node_modules|dist/,
+				use: [
+					'raw-loader',
+					'postcss-loader',
+					'sass-loader'
+				]
+			},
+			{
 				test: /\.sass$/,
 				exclude: /\.component\.sass$/,
-                use: isProd ? ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: [
+				use: ExtractTextPlugin.extract({
+					fallback: 'style-loader',
+					use: [
 						{
 							loader: 'css-loader',
 							options: {
-								minimize: isProd
+								minimize: true
 							}
 						},
 						{
@@ -63,74 +78,20 @@ config = {
 								sourceMap: isProd
 							}
 						}
-                    ]
-				}) : [
-					'style-loader',
-					'css-loader',
-					'postcss-loader',
-					'sass-loader'
-				]
+					]
+				})
 			},
 			{
-				test: /\.component\.sass$/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							name: 'styles/[name].[ext]?[hash]'
-						}
-					},
-					'extract-loader',
-					{
-						loader: 'css-loader',
-						options: {
-							minimize: isProd
-						}
-					},
-					{
-						loader: 'postcss-loader',
-						options: {
-							sourceMap: isProd
-						}
-					},
-					{
-						loader: 'sass-loader',
-						options: {
-							sourceMap: isProd
-						}
-					}
-				]
+				test: /\.html$/,
+				loader: 'html-loader'
 			},
-			{
-				test: /\.component\.html$/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							name: 'templates/[name].[ext]?[hash]'
-						}
-					},
-					'extract-loader',
-					{
-						loader: 'html-loader',
-						options: {
-							minimize: isProd,
-							caseSensitive: true,
-							removeComments: true,
-							minifyCSS: isProd,
-							minifyJS: isProd,
-							minifyURLs: isProd
-						}
-					}
-				]
-			},
-			// FontAwesome fonts loader
+			// Fonts loader
             {
                 test: /\.(ttf|eot|svg|woff(2)?)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'fonts/[name].[ext]?[hash]'
+                        name: 'fonts/[name].[hash].[ext]'
                     }
                 }
 			},
@@ -139,7 +100,7 @@ config = {
                 use: {
                     loader: 'file-loader',
                     options: {
-                        name: 'img/[name].[ext]?[hash]'
+                        name: 'img/[name].[hash].[ext]'
                     }
                 }
 			}
@@ -147,27 +108,13 @@ config = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'InstaFlash',
+            title: packageFile.name,
             filename: 'index.html', // Output path: ./dist/index.html
             template: './src/index.htm',
 			inject: 'body', // Inject script file to body tag
 			minify: {
-				minimize: isProd,
-				caseSensitive: true,
-				removeComments: true,
-				minifyCSS: isProd,
-				minifyJS: isProd,
-				minifyURLs: isProd
-			},
-
-            language: packageFile.config.language,
-            charset: packageFile.config.charset,
-            author: packageFile.author,
-            description: packageFile.description,
-            keywords: packageFile.keywords.join(),
-            pragma: (!isProd ? 'no-cache' : ''),
-            expires: (!isProd ? '0' : 'Friday, 25-May-18 00:00:00 GMT'), // Standart: RFC 850.
-            cache_control: (isProd ? 'public, max-age: 3600, must-revalidate' : 'no-cache, no-store')
+				minimize: true
+			}
         }),
         new webpack.DefinePlugin({
             'process.env': {
@@ -177,8 +124,8 @@ config = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            Popper: 'popper.js'
+			'window.jQuery': 'jquery',
+			Popper: 'popper.js'
         }),
 		new webpack.HotModuleReplacementPlugin(),
         new FaviconsWebpackPlugin({
@@ -201,34 +148,26 @@ config = {
 		}),
 		new webpack.NoEmitOnErrorsPlugin(),
 		new webpack.ContextReplacementPlugin(
-			/@angular(\\|\/)core(\\|\/)/,
-		)
+			/angular(\\|\/)core(\\|\/)/
+		),
+		new ExtractTextPlugin('[name].[hash].css'),
+		new UglifyJsPlugin()
 	],
     devServer: {
         compress: true, // gzip compression
-        host: packageFile.config.host,
+        host: HOSTNAME,
         https: false,
         historyApiFallback: true,
-        port: process.env.WEBPACK_PORT || packageFile.config.port,
+        port: process.env.PORT || PORT,
         index: 'index.html', // Index filename
         contentBase: path.join(__dirname, 'dist'), // Output directory
         publicPath: '/', // URL path
         open: false, // Auto open in the browser
         allowedHosts: [
-            packageFile.config.host
+            HOSTNAME
         ],
 		hot: true,
-		inline: true,
 		progress: true
     }
 };
-
-
-if(isProd) {
-    config.plugins.push(
-        new ExtractTextPlugin('[name].[hash].css'),
-        new UglifyJsPlugin()
-    );
-}
-
 module.exports = config;

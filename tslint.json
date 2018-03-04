@@ -10,9 +10,14 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "no-var-requires": false,
+    "no-string-literal": false,
     "no-console": false,
     "interface-name": [true, "never-prefix"],
-    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}]
+    "trailing-comma": [true, {"multiline": "never"}],
+    "member-access": [true, "no-public"],
+    "variable-name": [true, "ban-keywords"]
   },
-  "rulesDirectory": []
+  "rulesDirectory": [
+    "./src/"
+  ]
 }
